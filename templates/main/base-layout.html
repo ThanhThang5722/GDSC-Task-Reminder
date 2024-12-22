@@ -1,0 +1,86 @@
+{{ define "main/base-layout.html" }}
+<!DOCTYPE html>
+<html lang="en">
+{{ template "globals/header.html" .}}
+<body>
+    <div id="header" style="display: flex; align-items: center;">
+        <h1>Welcome back to {{ .BrainName }} {{ .UserName }}</h1>
+    </div>
+    <span>You should only have maximum 5 tasks in each group</span>
+    <div id="body">
+        <div class="axis-labels">
+            <div class="matrix">
+                <div class="quadrant top-left" id="top-left">
+                    {{ range .doFirst }}
+                    <div class="card">
+                        <h4>{{ .Title }}</h4>
+                        <p>{{ .Description }}</p>
+                        <small>Deadline: {{ .Deadline }}</small>
+                    </div>
+                    {{ end }}
+                    <button id="add-button">Add</button>
+                </div>
+                <div class="quadrant top-right" id="top-right">
+                    {{ range .doLater }}
+                    <div class="card">
+                        <h4>{{ .Title }}</h4>
+                        <p>{{ .Description }}</p>
+                        <small>Deadline: {{ .Deadline }}</small>
+                    </div>
+                    {{ end }}
+                </div>
+                <div class="quadrant bottom-left" id="bottom-left">
+                    {{ range .delegate }}
+                    <div class="card">
+                        <h4>{{ .Title }}</h4>
+                        <p>{{ .Description }}</p>
+                        <small>Deadline: {{ .Deadline }}</small>
+                    </div>
+                    {{ end }}
+                </div>
+                <div class="quadrant bottom-right" id="bottom-right">
+                    {{ range .eliminate }}
+                    <div class="card">
+                        <h4>{{ .Title }}</h4>
+                        <p>{{ .Description }}</p>
+                        <small>Deadline: {{ .Deadline }}</small>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            <div class="vertical-label">Importance</div>
+            <div class="horizontal-label">Urgency</div>
+          </div>
+    </div>
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <!-- Close button -->
+            <span id="closeButton" class="close-btn">&times;</span>
+            <h1>Task Form</h1>
+            <form id="taskForm">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required><br><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea><br><br>
+
+                <label for="deadline">Deadline:</label>
+                <input type="datetime-local" id="deadline" name="deadline" required><br><br>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="DoFirst">Do First</option>
+                    <option value="DoLater">Do Later</option>
+                    <option value="Delegate">Delegate</option>
+                    <option value="Eliminate">Eliminate</option>
+                </select><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script src="/assets/js/script.js?v=1.0"></script>
+    {{ template "globals/footer.html" .}}
+</body>
+</html>
+{{ end }}

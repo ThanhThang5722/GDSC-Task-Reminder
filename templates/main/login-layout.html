@@ -1,0 +1,27 @@
+{{ define "main/login-layout.html" }}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/assets/css/login.css?v=1.1">  
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login to {{ .BrainName }}</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script src="/assets/js/login.js?v=1.1"></script>
+</body>
+</html>
+{{ end }}

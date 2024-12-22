@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card{
+            background-color: white;
+            width: 65px;
+            height: 100px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 0.75em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card p::first-letter {
+            margin-left: 10px; /* Adjust the space as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <p>Titleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee with a really long word that needs to break and show ellipsis when it overflows.</p>
+    </div>
+</body>
+</html>

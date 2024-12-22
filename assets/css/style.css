@@ -1,0 +1,142 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+.matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 900px; /* Adjust as needed */
+    height: 480px; /* Adjust as needed */
+    border: 1px solid #ccc; /* Light gray border */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: white;
+
+}
+
+.quadrant {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ccc;
+    flex-wrap: wrap;
+}
+
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #FFC8BB; /* Light pink */
+}
+.card{
+    background-color: white;
+    width: 120px;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card p::first-letter {
+    margin-left: 5px; /* Adjust the space as needed */
+}
+
+.card p, .card small {
+    display: none;
+}
+
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #AEF1C1; /* Light green */
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #FEFFBB; /* Light yellow */
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #BBF1FF; /* Light blue */
+}
+.axis-labels{
+  position: relative;
+}
+.axis-labels .vertical-label{
+  position: absolute;
+  left: -7%; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-weight: bold;
+}
+.axis-labels .horizontal-label{
+  position: absolute;
+  bottom: -5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+}
+
+#add-button {
+    position: absolute;
+    bottom: -40px; /* Position the button 10px from the bottom */
+    right: -40px; /* Position the button 10px from the right */
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+#header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+#header h1 {
+    margin-right: 10px;
+}
+#body {
+    position: relative;
+    top: 50%;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0%;
+}
