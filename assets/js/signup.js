@@ -1,5 +1,5 @@
 const form = document.getElementById("signup-form");
-
+var link2 = "https://gdsc-task-reminder.onrender.com"
 // Add an event listener to handle form submission
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the default form submission behavior
@@ -15,9 +15,9 @@ form.addEventListener("submit", function (event) {
     password: password,
     email: email
   };
-
+  var connect = link2 + "/api/user/signup"
   // Send the POST request
-  fetch("http://localhost:8080/api/user/signup", {
+  fetch(connect, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,8 @@ form.addEventListener("submit", function (event) {
     .then((response) => response.json()) // Parse the JSON response
     .then(() => {
         alert("Signup successful! Redirecting...");
-        window.open("http://localhost:8080/login", "_self");
+        var connect = link2 + "/login"
+        window.open(connect, "_self");
     })
     .catch((error) => {
       // Handle any network or other errors

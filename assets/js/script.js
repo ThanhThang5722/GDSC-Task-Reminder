@@ -1,3 +1,4 @@
+var link1 = "https://gdsc-task-reminder.onrender.com"
 // Get the modal
 var modal = document.getElementById('formModal');
 
@@ -44,9 +45,9 @@ form.onsubmit = function(event) {
         deadline: deadline,
         priority: priority
     };
-
+    var connect = link1 + "/api/Task"
     // Send the data to the API using the fetch API
-    fetch('http://localhost:8080/api/Task', {
+    fetch(connect, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -128,9 +129,9 @@ function markAsDone(button, title, description, deadline) {
         title: title,
         description: description
     };
-
+    var connect = link1 + "/api/Task"
     // Make the API call to mark the task as done
-    fetch("http://localhost:8080/api/Task", {
+    fetch(connect, {
         method: "DELETE",  // or "PATCH"
         headers: {
             "Content-Type": "application/json",
@@ -161,7 +162,8 @@ function signOut() {
     document.cookie = "jwt_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     
     // Redirect to login page
-    window.location.href = "http://localhost:8080/login";
+    var connect = link1 + "login"
+    window.location.href = connect;
 }
 
 // Attach event listener to the signout button

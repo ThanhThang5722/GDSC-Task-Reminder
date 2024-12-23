@@ -1,3 +1,4 @@
+var link3 = "https://gdsc-task-reminder.onrender.com"
 const form = document.getElementById("login-form");
 
 // Add an event listener to handle form submission
@@ -13,9 +14,9 @@ form.addEventListener("submit", function (event) {
     username: username,
     password: password,
   };
-
+  var connect = link3 + "/api/user/login"
   // Send the POST request
-  fetch("http://localhost:8080/api/user/login", {
+  fetch(connect, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +34,8 @@ form.addEventListener("submit", function (event) {
 
         // Redirect to the main page (http://localhost:8080) with the token in the headers
         //window.location.replace("http://localhost:8080");
-        window.open("http://localhost:8080", "_self");
+        var connect = link3
+        window.open(connect, "_self");
       } else {
         // Handle error (assuming error response contains the 'Message')
         alert("Login failed: " + data.Message);
