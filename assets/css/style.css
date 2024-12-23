@@ -39,6 +39,7 @@ body {
     background-color: #FFC8BB; /* Light pink */
 }
 .card{
+    position: relative;
     background-color: white;
     width: 120px;
     height: 75px;
@@ -139,4 +140,42 @@ body {
 footer {
     position: absolute;
     bottom: 0%;
+}
+
+
+.done-btn {
+    background-color: #28a745; /* Green color */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 0px 3px; /* Set padding as per your request */
+    font-size: 16px; /* Font size */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center text and icon vertically */
+    justify-content: center; /* Align the icon and text in the center horizontally */
+    gap: 5px; /* Space between icon and text */
+    position: absolute; /* Position the button at a specific location */
+    bottom: 1px; /* Set button to the middle bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    z-index: 2; /* Ensure the button appears above other content */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.done-btn i {
+    font-size: 18px; /* Icon size */
+}
+
+.done-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.done-btn:active {
+    background-color: #1e7e34; /* Even darker green when clicked */
+}
+
+.done-btn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.5); /* Add custom focus outline */
 }

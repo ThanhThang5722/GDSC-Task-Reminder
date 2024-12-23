@@ -54,3 +54,8 @@ func RenderLoginPage(ctx *gin.Context) {
 		"BrainName": "GDSC Task Reminder",
 	})
 }
+func RenderSignUpPage(ctx *gin.Context) {
+	ctx.HTML(http.StatusAccepted, "main/signup-layout.html", gin.H{
+		"BrainName": "GDSC Task Reminder",
+	})
+}

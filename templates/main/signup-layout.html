@@ -1,4 +1,4 @@
-{{ define "main/login-layout.html" }}
+{{ define "main/signup-layout.html" }}
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,20 +11,18 @@
 
     <div class="container">
         <h2>Login to {{ .BrainName }}</h2>
-        <form id="login-form">
+        <form id="signup-form">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
-
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Login</button>
-            <a href="http://localhost:8080/signup">
-                <button type="button" id="sign-up">Sign Up</button>
-            </a>
+            <button type="submit">Signup</button>
         </form>
     </div>
-    <script src="/assets/js/login.js?v=1.1"></script>
+    <script src="/assets/js/signup.js?v=1.1"></script>
 </body>
 </html>
 {{ end }}

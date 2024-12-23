@@ -3,10 +3,11 @@
 <html lang="en">
 {{ template "globals/header.html" .}}
 <body>
+    <button id="signoutBtn" style="margin-right: 10px;">Sign Out</button>
     <div id="header" style="display: flex; align-items: center;">
         <h1>Welcome back to {{ .BrainName }} {{ .UserName }}</h1>
     </div>
-    <span>You should only have maximum 5 tasks in each group</span>
+    <span>You should only have maximum 9 tasks in each group</span>
     <div id="body">
         <div class="axis-labels">
             <div class="matrix">
@@ -16,6 +17,9 @@
                         <h4>{{ .Title }}</h4>
                         <p>{{ .Description }}</p>
                         <small>Deadline: {{ .Deadline }}</small>
+                        <button class="done-btn" onclick="markAsDone('{{ .Title }}', '{{ .Description }}', '{{ .Deadline }}')">
+                            Done
+                        </button>
                     </div>
                     {{ end }}
                     <button id="add-button">Add</button>
@@ -26,6 +30,9 @@
                         <h4>{{ .Title }}</h4>
                         <p>{{ .Description }}</p>
                         <small>Deadline: {{ .Deadline }}</small>
+                        <button class="done-btn" onclick="markAsDone('{{ .Title }}', '{{ .Description }}', '{{ .Deadline }}')">
+                            Done
+                        </button>
                     </div>
                     {{ end }}
                 </div>
@@ -35,6 +42,9 @@
                         <h4>{{ .Title }}</h4>
                         <p>{{ .Description }}</p>
                         <small>Deadline: {{ .Deadline }}</small>
+                        <button class="done-btn" onclick="markAsDone('{{ .Title }}', '{{ .Description }}', '{{ .Deadline }}')">
+                            Done
+                        </button>
                     </div>
                     {{ end }}
                 </div>
@@ -44,6 +54,9 @@
                         <h4>{{ .Title }}</h4>
                         <p>{{ .Description }}</p>
                         <small>Deadline: {{ .Deadline }}</small>
+                        <button class="done-btn" onclick="markAsDone('{{ .Title }}', '{{ .Description }}', '{{ .Deadline }}')">
+                            Done
+                        </button>
                     </div>
                     {{ end }}
                 </div>

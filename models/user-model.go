@@ -11,6 +11,7 @@ type User struct {
 	userID   int
 	username string
 	password string
+	email    string
 }
 
 func (u *User) SetUserName(value string) {
@@ -22,11 +23,15 @@ func (u *User) SetPassword(value string) {
 func (u *User) SetUserID(value int) {
 	u.userID = value
 }
+func (u *User) SetEmail(value string) {
+	u.email = value
+}
 
 type UserDB struct {
 	UserID   int
 	Username string
 	Password string
+	Email    string
 }
 
 func NewUserFromDB(u UserDB) User {
@@ -47,6 +52,9 @@ func (u *User) GetUserID() int {
 
 func (u *User) GetPassword() string {
 	return u.password
+}
+func (u *User) GetEmail() string {
+	return u.email
 }
 
 func (u *User) GetOne(Property string, value interface{}) error {
@@ -75,25 +83,25 @@ func (u *User) GetOne(Property string, value interface{}) error {
 	return nil
 }
 
-func (u *User) Insert(uname, password string) error {
+func (u *User) Insert(uname, password, email string) error {
 	db := database.GetDbInstance()
 	query := `
-		INSERT INTO users (username, password)
-		VALUES (?,?)
+		INSERT INTO users (username, password, email)
+		VALUES (?,?,?)
 	`
-	_, err := db.Exec(query, uname, password)
+	_, err := db.Exec(query, uname, password, email)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *User) Create(uname, hashPass string) error {
+func (u *User) Create(uname, hashPass, email string) error {
 	var existedUser User
 	if err := existedUser.GetOne("username", uname); err == nil && existedUser.GetUserName() != "" {
 		return errors.New("username is existed")
 	}
-	if err := u.Insert(uname, hashPass); err != nil {
+	if err := u.Insert(uname, hashPass, email); err != nil {
 		return err
 	}
 	return nil

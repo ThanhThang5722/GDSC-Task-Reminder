@@ -42,12 +42,11 @@ form.onsubmit = function(event) {
         title: title,
         description: description,
         deadline: deadline,
-        status: "Doing",
         priority: priority
     };
 
     // Send the data to the API using the fetch API
-    fetch('http://localhost:8080/api/addTask', {
+    fetch('http://localhost:8080/api/Task', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -77,6 +76,9 @@ function createTaskCard(task) {
         <h4>${task.title}</h4>
         <p>${task.description}</p>
         <small>Deadline: ${new Date(task.deadline).toLocaleString()}</small>
+        <button class="done-btn" onclick="markAsDone('${task.title}', '${task.description}', '${task.deadline}')">
+                            Done
+                        </button>
     `;
     return card;
 }
@@ -105,3 +107,62 @@ function appendTaskToQuadrant(card, priority) {
     // Append the card to the selected quadrant
     quadrant.appendChild(card);
 }
+
+document.getElementById("body").addEventListener("click", function(event) {
+    // Check if the clicked element is a "Done" button
+    if (event.target && event.target.classList.contains("done-btn")) {
+        // Call markAsDone with the necessary details
+        const button = event.target;
+        const card = button.closest('.card');
+        
+        const title = card.querySelector('h4').textContent;
+        const description = card.querySelector('p').textContent;
+        const deadline = card.querySelector('small').textContent.replace('Deadline: ', '');
+        
+        markAsDone(button, title, description, deadline);
+    }
+});
+
+function markAsDone(button, title, description, deadline) {
+    const data = {
+        title: title,
+        description: description
+    };
+
+    // Make the API call to mark the task as done
+    fetch("http://localhost:8080/api/Task", {
+        method: "DELETE",  // or "PATCH"
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then((response) => {
+        if (response.ok) {
+            alert("Task marked as done");
+
+            // Find the closest parent with the 'card' class and remove it
+            const card = button.closest('.card');
+            if (card) {
+                card.remove();  // Remove the task card from the UI
+            }
+        } else {
+            alert("Error marking task as done");
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+}
+
+// Function to handle sign-out
+function signOut() {
+    // Remove the jwt_token cookie
+    document.cookie = "jwt_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    
+    // Redirect to login page
+    window.location.href = "http://localhost:8080/login";
+}
+
+// Attach event listener to the signout button
+document.getElementById('signoutBtn').addEventListener('click', signOut);

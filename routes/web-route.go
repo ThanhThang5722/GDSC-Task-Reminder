@@ -9,4 +9,5 @@ import (
 func WebRoute(r *gin.RouterGroup) {
 	r.GET("/", handlers.RenderHomePage)
 	r.GET("/login", handlers.RenderLoginPage)
+	r.GET("/signup", handlers.RenderSignUpPage)
 }

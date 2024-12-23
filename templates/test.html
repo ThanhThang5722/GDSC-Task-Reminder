@@ -1,30 +1,211 @@
-<html lang="en">
-<head>
+<html><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/assets/css/login.css?v=1.1">
     <style>
-        .card{
-            background-color: white;
-            width: 65px;
-            height: 100px;
-            border: 1px solid black;
-            border-radius: 5px;
-            font-size: 0.75em;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .card p::first-letter {
-            margin-left: 10px; /* Adjust the space as needed */
-        }
+        body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+.matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 900px; /* Adjust as needed */
+    height: 480px; /* Adjust as needed */
+    border: 1px solid #ccc; /* Light gray border */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: white;
+
+}
+
+.quadrant {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ccc;
+    flex-wrap: wrap;
+}
+
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #FFC8BB; /* Light pink */
+}
+.card{
+    position: relative;
+    background-color: white;
+    width: 120px;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card p::first-letter {
+    margin-left: 5px; /* Adjust the space as needed */
+}
+
+.card p, .card small {
+    display: none;
+}
+
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #AEF1C1; /* Light green */
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #FEFFBB; /* Light yellow */
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%; /* Adjust as necessary */
+    height: 50%; /* Adjust as necessary */
+    background-color: #BBF1FF; /* Light blue */
+}
+.axis-labels{
+  position: relative;
+}
+.axis-labels .vertical-label{
+  position: absolute;
+  left: -7%; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-weight: bold;
+}
+.axis-labels .horizontal-label{
+  position: absolute;
+  bottom: -5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+}
+
+#add-button {
+    position: absolute;
+    bottom: -40px; /* Position the button 10px from the bottom */
+    right: -40px; /* Position the button 10px from the right */
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+#header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+#header h1 {
+    margin-right: 10px;
+}
+#body {
+    position: relative;
+    top: 50%;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0%;
+}
+
+
+.done-btn {
+    background-color: #28a745; /* Green color */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 0px 3px; /* Set padding as per your request */
+    font-size: 16px; /* Font size */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center text and icon vertically */
+    justify-content: center; /* Align the icon and text in the center horizontally */
+    gap: 5px; /* Space between icon and text */
+    position: absolute; /* Position the button at a specific location */
+    bottom: 1px; /* Set button to the middle bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    z-index: 2; /* Ensure the button appears above other content */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.done-btn i {
+    font-size: 18px; /* Icon size */
+}
+
+.done-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.done-btn:active {
+    background-color: #1e7e34; /* Even darker green when clicked */
+}
+
+.done-btn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.5); /* Add custom focus outline */
+}
+
     </style>
 </head>
 <body>
-    <div class="card">
-        <p>Titleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee with a really long word that needs to break and show ellipsis when it overflows.</p>
+
+    <div class="container">
+        <h2>Login to GDSC Task Reminder</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required="">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required="">
+
+            <button type="submit">Login</button>
+            <a href="http://localhost:8080/signup">
+                <button type="button" id="sign-up">Sign Up</button>
+            </a>
+        </form>
     </div>
-</body>
-</html>
+    <script src="/assets/js/login.js?v=1.1"></script>
+
+
+</body></html>

@@ -15,6 +15,12 @@ type RecievedUser struct {
 	Password string `json:"password"`
 }
 
+type SignUpUser struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+}
+
 func LoginAPI(ctx *gin.Context) {
 	var receivedUser RecievedUser
 	if err := ctx.ShouldBindJSON(&receivedUser); err != nil {
@@ -59,8 +65,8 @@ func LoginAPI(ctx *gin.Context) {
 }
 
 func SignUp(ctx *gin.Context) {
-	var receivedUser RecievedUser
-	if err := ctx.ShouldBindJSON(&receivedUser); err != nil {
+	var signUpUser SignUpUser
+	if err := ctx.ShouldBindJSON(&signUpUser); err != nil {
 		ctx.JSON(http.StatusBadRequest,
 			gin.H{
 				"error": err,
@@ -69,7 +75,7 @@ func SignUp(ctx *gin.Context) {
 	}
 
 	var user models.User
-	hashedPassword, err := auth.HashPassword(receivedUser.Password)
+	hashedPassword, err := auth.HashPassword(signUpUser.Password)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError,
 			gin.H{
@@ -78,7 +84,7 @@ func SignUp(ctx *gin.Context) {
 		return
 	}
 
-	err = user.Create(receivedUser.Username, hashedPassword)
+	err = user.Create(signUpUser.Username, hashedPassword, signUpUser.Email)
 	if err != nil {
 		log.Println(err.Error())
 		var message string
@@ -95,11 +101,11 @@ func SignUp(ctx *gin.Context) {
 	}
 
 	// Hide password
-	user.SetPassword("*")
+	signUpUser.Password = "*"
 
 	ctx.JSON(http.StatusOK,
 		gin.H{
 			"status": "Sign Up successfully",
-			"user":   user,
+			"user":   signUpUser,
 		})
 }
