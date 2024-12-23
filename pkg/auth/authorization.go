@@ -59,7 +59,7 @@ func ParseToken(tokenString string) (Claims, error) {
 }
 
 func GenerateTokenString(claims Claims) (string, error) {
-	claims.ExpiresAt = time.Now().Add(5 * time.Minute).Unix()
+	claims.ExpiresAt = time.Now().Add(60 * time.Minute).Unix()
 
 	// You can also optionally set other fields like IssuedAt or NotBefore
 	claims.IssuedAt = time.Now().Unix()

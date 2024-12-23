@@ -162,7 +162,7 @@ function signOut() {
     document.cookie = "jwt_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     
     // Redirect to login page
-    var connect = link1 + "login"
+    var connect = link1 + "/login"
     window.location.href = connect;
 }
 

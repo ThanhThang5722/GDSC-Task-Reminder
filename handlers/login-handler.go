@@ -56,6 +56,15 @@ func LoginAPI(ctx *gin.Context) {
 		})
 		return
 	}
+	cookie := &http.Cookie{
+		Name:     "jwt_token",
+		Value:    tokenString,
+		Path:     "/",
+		HttpOnly: true,
+		Secure:   true, // Set this to true if using HTTPS
+		MaxAge:   3600, // Expiration time (1 hour)
+	}
+	http.SetCookie(ctx.Writer, cookie)
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"token":    tokenString,
