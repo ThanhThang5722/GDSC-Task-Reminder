@@ -28,7 +28,7 @@ form.addEventListener("submit", function (event) {
     .then(() => {
         alert("Signup successful! Redirecting...");
         var connect = link2 + "/login"
-        window.open(connect, "_self");
+        window.location.href = connect;
     })
     .catch((error) => {
       // Handle any network or other errors

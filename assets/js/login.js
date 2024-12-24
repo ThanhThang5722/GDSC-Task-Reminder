@@ -35,7 +35,7 @@ form.addEventListener("submit", function (event) {
         // Redirect to the main page (http://localhost:8080) with the token in the headers
         //window.location.replace("http://localhost:8080");
         var connect = link3
-        window.open(connect, "_self");
+        window.location.href = connect;
       } else {
         // Handle error (assuming error response contains the 'Message')
         alert("Login failed: " + data.Message);
