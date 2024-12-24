@@ -18,7 +18,7 @@ func RenderHomePage(ctx *gin.Context) {
 	if err != nil {
 		fmt.Println(`Bug in cookie: `, err)
 		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"Message": "Please login First",
+			"Message": "Please login First at /login",
 		})
 		ctx.Redirect(http.StatusMovedPermanently, "/login")
 		ctx.Abort()
@@ -29,7 +29,7 @@ func RenderHomePage(ctx *gin.Context) {
 	if err != nil {
 		fmt.Println(`Bug in Parse`)
 		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"Message": "Please login First",
+			"Message": "Please login First /login",
 		})
 		ctx.Redirect(http.StatusMovedPermanently, "/login")
 		ctx.Abort()
