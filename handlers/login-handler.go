@@ -63,6 +63,7 @@ func LoginAPI(ctx *gin.Context) {
 		HttpOnly: true,
 		Secure:   true, // Set this to true if using HTTPS
 		MaxAge:   3600, // Expiration time (1 hour)
+		SameSite: http.SameSiteNoneMode,
 	}
 	http.SetCookie(ctx.Writer, cookie)
 

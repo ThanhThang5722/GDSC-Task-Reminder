@@ -9,6 +9,7 @@ import (
 func CorsMiddleware(ctx *gin.Context) {
 	header := ctx.Writer.Header()
 	header.Add("Access-Control-Allow-Origin", "*")
+	header.Add("Access-Control-Allow-Credentials", "true")
 
 	if ctx.Request.Method == http.MethodOptions {
 		header.Add("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
